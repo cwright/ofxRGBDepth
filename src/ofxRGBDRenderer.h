@@ -38,6 +38,14 @@ class ofxRGBDRenderer {
     void setXYShift(ofVec2f shift);
     float xshift;
 	float yshift;
+    
+    ofMatrix4x4 fudgeMatrix;  
+    
+    float fx, fy;
+    Point2d principalPoint;
+    
+
+
 	
 	float edgeCull;
 	float farClip;
@@ -87,11 +95,11 @@ class ofxRGBDRenderer {
     ofShader* currentlyBoundShader;
     bool rendererBound;
     
-    Point2d principalPoint;
+    
     cv::Size imageSize;
 	Calibration depthCalibration, rgbCalibration;    
 	Mat rotationDepthToRGB, translationDepthToRGB;
-    float fx, fy;
+
 
 	bool hasDepthImage;
 	bool hasRGBImage;
@@ -107,6 +115,9 @@ class ofxRGBDRenderer {
 	ofMatrix4x4 depthToRGBView;
 	ofMatrix4x4 rgbProjection;
     ofMatrix4x4 rgbMatrix;
+    
+    
+
 
 	ofShader meshShader;
     ofShader pointShader;  

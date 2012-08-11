@@ -13,6 +13,9 @@
 ofxRGBDRenderer::ofxRGBDRenderer(){
 	xshift = 0;
 	yshift = 0;
+    
+    fudgeMatrix.makeIdentityMatrix(); 
+    
 	
 	edgeCull = 4000;
 	simplify = -1;
@@ -321,7 +324,7 @@ void ofxRGBDRenderer::unbindRenderer(){
 
 void ofxRGBDRenderer::setupProjectionUniforms(ofShader& theShader){
 
-    rgbMatrix = (depthToRGBView * rgbProjection);
+    rgbMatrix = (depthToRGBView * rgbProjection * fudgeMatrix);
     //rgbMatrix.scale(1, -1, 1);
     
     Point2d principalPoint = depthCalibration.getUndistortedIntrinsics().getPrincipalPoint();
