@@ -39,7 +39,15 @@ class ofxRGBDRenderer {
     float xshift;
 	float yshift;
     
-    ofMatrix4x4 fudgeMatrix;  
+    
+    float rotx;
+    float roty;
+    float rotz;
+    
+    float transpx;
+    float transpy;
+    float transpz;
+
     
     float fx, fy;
     Point2d principalPoint;
@@ -88,8 +96,11 @@ class ofxRGBDRenderer {
 	Calibration& getRGBCalibration();
 	Calibration& getDepthCalibration();
 	    
-  protected:	
-	int simplify;
+  protected:
+    
+    ofMatrix4x4 fudgeMatrix;  
+	
+    int simplify;
 
     //bool shaderBound;
     ofShader* currentlyBoundShader;

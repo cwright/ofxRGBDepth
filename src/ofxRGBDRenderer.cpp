@@ -13,7 +13,15 @@
 ofxRGBDRenderer::ofxRGBDRenderer(){
 	xshift = 0;
 	yshift = 0;
+
+    rotx = 0.;
+    roty = 0.;
+    rotz = 0.;
     
+    transpx = 0;
+    transpy = 0;
+    transpz = 0;
+
     fudgeMatrix.makeIdentityMatrix(); 
     
 	
@@ -323,7 +331,10 @@ void ofxRGBDRenderer::unbindRenderer(){
 }
 
 void ofxRGBDRenderer::setupProjectionUniforms(ofShader& theShader){
-
+    fudgeMatrix.makeIdentityMatrix(); 
+    fudgeMatrix.glRotate(rotx, 1., 0, 0);
+    fudgeMatrix.glRotate(roty, 0, 1, 0);
+    fudgeMatrix.glRotate(rotz, 0, 0, 1);
     rgbMatrix = (depthToRGBView * rgbProjection * fudgeMatrix);
     //rgbMatrix.scale(1, -1, 1);
     
